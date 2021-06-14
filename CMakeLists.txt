@@ -11,8 +11,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
+set(HEADERS
+     cow.h
+)
 
-add_executable(${PROJECT_NAME} main.cpp)
+set(SOURCES
+     main.cpp 
+     cow.cpp
+     )
+
+add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
 
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
 
