@@ -68,6 +68,9 @@ void Cow::set_position(const float& x, const float& y) {
   m_sprite.setPosition(x, y);
 }
 
+sf::Vector2f Cow::get_position(){
+  return m_sprite.getPosition();
+}
 
 void Cow::_set_next_frame() {
   m_rect.left = m_rect.left + COW_SPRITE_WIDTH;
@@ -101,10 +104,8 @@ void Cow::_update_position(sf::RenderWindow& window) {
   auto elapsed_time = m_movement_clock.getElapsedTime().asMilliseconds();
   if (elapsed_time >= 1) {
     m_movement_clock.restart();
-    float cur_x = m_sprite.getPosition().x;
-    float cur_y = m_sprite.getPosition().y;
-
-    // std::cout << elapsed_time << std::endl;
+    float cur_x = get_position().x;
+    float cur_y = get_position().y;
     
     // update horisontal position
     // x = x0 + v*t

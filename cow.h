@@ -14,6 +14,7 @@ class Cow  {
   void update(sf::RenderWindow&);
   void draw(sf::RenderWindow&) const ;
   void set_position(const float&, const float&);
+  sf::Vector2f get_position();
   void key_pressed_handler(sf::Event&);
   void key_released_handler(sf::Event&);
 
