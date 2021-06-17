@@ -6,10 +6,10 @@
 
 int main() {
   sf::RenderWindow window;
-  window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "dancing polish cow", sf::Style::Close);
+  window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),
+                "dancing polish cow", sf::Style::Close);
   window.setPosition(sf::Vector2i(200, 200));
-  window.setKeyRepeatEnabled(true); //когда кнопку зажимаем много раз воспринимается нажатие
-
+  window.setKeyRepeatEnabled(true);
 
   // музыка
   sf::Music music;
@@ -19,7 +19,7 @@ int main() {
   music.setVolume(50);
   music.play();
 
-  // ставим фон 
+  // ставим фон
   sf::Sprite background_sprite;
   sf::Texture background_texture_0;
   if (!background_texture_0.loadFromFile(BACKGROUND_IMG_PATH_0))
@@ -36,10 +36,9 @@ int main() {
   int current_background_number = 0;
   background_sprite.setTexture(background_texture_0);
 
-
-Cow cow;
-cow.set_position(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 3 * 2);
-  // основный цикл 
+  Cow cow;
+  cow.set_position(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 3 * 2);
+  // основный цикл
   sf::Event event;
 
   while (window.isOpen()) {
@@ -75,7 +74,7 @@ cow.set_position(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 3 * 2);
 
     window.clear();
 
-    cow.update(window);
+    cow.update();
 
     window.draw(background_sprite);
 

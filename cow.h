@@ -6,46 +6,40 @@
 
 #include "my_config.h"
 
-class Cow  {
- public:
+class Cow {
+public:
   Cow();
   ~Cow() = default;
 
-  void update(sf::RenderWindow&);
-  void draw(sf::RenderWindow&) const ;
-  void set_position(const float&, const float&);
-  sf::Vector2f get_position();
-  void key_pressed_handler(sf::Event&);
-  void key_released_handler(sf::Event&);
+  void update();                       // обновить состояние
+  void draw(sf::RenderWindow &) const; // отрисовка коровы
+  void set_position(const float &, const float &); // позиция спрайта
+  sf::Vector2f get_position(); // положение спрайта коровы
+  void key_pressed_handler(sf::Event &); // обработчик события "нажатие"
+  void key_released_handler(sf::Event &); // обработчик события "отжатие"
 
- private:
-  enum state {
-    standing,
-    moving
-  };
-  enum direction {
-    left,
-    right
-  };
+private:
+  enum state { standing, moving };
+  enum direction { left, right };
 
-  state       m_sprite_state;
-  direction   m_direction;
-  sf::Texture m_texture;
-  sf::IntRect m_rect;
-  sf::Clock   m_sprite_clock;
-  sf::Clock   m_movement_clock;
-  sf::Sprite  m_sprite;
+  state m_sprite_state;  // состояние анимации спрайта
+  direction m_direction; // направление коровы
+  sf::Texture m_texture; // текстура
+  sf::IntRect m_rect;    // прямоугольник спрайта
+  sf::Clock m_sprite_clock; // счетчик времени для анимации спрайта
+  sf::Clock m_movement_clock; // счетчик времени движения коровы
+  sf::Sprite m_sprite; // спрайт
 
-  float m_x_velocity;
-  float m_y_velocity;
+  float m_x_velocity; // скорость коровы по X-координате
+  float m_y_velocity; // скорость коровы по Y-координате
 
-  void _set_next_frame();
-  void _set_static_frame();
-  void _set_direction(direction);
-  void _set_sprite_state(state);
-  void _update_position(sf::RenderWindow&);
-  void _update_sprite();
-  void _jump_action_handler();
+  void _set_next_frame(); // Анимация. Установка следующего кадра
+  void _set_static_frame(); // установка статического кадра
+  void _set_direction(direction); // устанавливает направление коровы
+  void _set_sprite_state(state); // устанавливает состояние анимации спрайта
+  void _update_position(); // обновление позиции коровы
+  void _update_sprite(); // проверка на обновления анимации
+  void _jump_action_handler(); // Обработка запроса прыжка
 };
 
 #endif // COW_H
